@@ -1,0 +1,78 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }} Modification Utilisateur {% endblock %}
+{% block body %}
+
+    {% if form.user is defined %}
+        {% if form.user != null %}
+            <form id="sign-up-form" action="index.php?page=user_modif"
+                  method="post" enctype="application/x-www-form-urlencoded">
+                <div class="form-group">
+                    <label for="inputLastName">Nom</label>
+                    <input type="text" id="inputLastName" name="inputLastName" class="form-control"
+                           placeholder="Veuillez insérer votre nom"
+                           value="{{ form.user.lastName }}">
+                </div>
+                <div class="form-group">
+                    <label for="inputFirstName">Prénom</label>
+                    <input type="text" id="inputFirstName" name="inputFirstName" class="form-control"
+                           placeholder="Veuillez insérer votre prénom"
+                           value="{{ form.user.firstName }}">
+                </div>
+                <div class="form-group">
+                    <label for="inputBirthDate">Date de naissance</label>
+                    <input type="date" id="inputBirthDate" name="inputBirthDate" class="form-control"
+                           value="{{ form.user.birthDate }}">
+                </div>
+                <div class="form-group">
+                    <label for="inputGender">Sexe</label>
+                      <input type="radio" name="inputGender"
+                           {% if form.user.gender is same as('Masculin') %}checked="checked"{% endif %}
+                           value="Masculin">Masculin
+                    <input type="radio" name="inputGender"
+                           {% if form.user.gender is same as('Féminin') %}checked="checked"{% endif %}
+                           value="Féminin">Féminin
+                </div>
+                <div class="form-group">
+                    <label for="inputCountry">Pays</label>
+                    <select name="countryList" for="sign-up-form" class="form-control">
+                        {% for option in tab %}
+                            <option value="{{ option }}"{% if option is same as(form.user.country) %}selected{% endif %}>{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputJob">Métier</label>
+                    <select name="jobList" for="sign-up-form" class="form-control">
+                        <option value="cadre"
+                                {% if form.user.job == 'cadre' %} selected {% endif %}>Cadre</option>
+                        <option value="employe"
+                                {% if form.user.job == 'employe' %} selected {% endif %}>Employe</option>
+                        <option value="ouvrier"
+                                {% if form.user.job == 'ouvrier' %} selected {% endif %}>Ouvrier</option>
+                        <option value="agriculteur
+                                {% if form.user.job == 'agriculteur' %} selected {% endif %}">Agriculteur</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" id="inputEmail" name="inputEmail" class="form-control"
+                           placeholder="Veuillez insérer votre mail" value="{{ form.user.email }}">
+                </div>
+                <input type="hidden" name="id" value="{{ form.user.id }}">
+                <button type="submit" class="btn btn-lg btn-primary" name="btModifier">Modifier</button>
+            </form>
+            {% else %}
+            <h1 class="alert-danger" role="alert">{{ form.message }}</h1>
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=users_list">Retourner sur la liste des utilisateurs</a></h1>
+    {% endif %}
+        {% else %}
+            {% if form.valide == true %}
+                <h1 class="h3 mb-3 font-weight-normal">{{ form.message }}</h1>
+                <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=users_list">Retourner sur la liste des utilisateurs</a></h1>
+                {% else %}
+                    <h1 class="alert-danger" role="alert">{{ form.message }}</h1>
+                    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=users_list">Retourner sur la liste des utilisateurs</a></h1>
+                {% endif %}
+
+    {% endif %}
+{% endblock %}

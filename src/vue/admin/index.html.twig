@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }} Accès Administration {% endblock %}
+{% block body %}
+    {% if role is defined %}
+        {% if role is same as('ADMIN') %}
+            <h1>Vous avez déjà accès au panel d'administration</h1>
+    {% else %}
+            <h3>Entrez le code pour accéder au panel Administration du site</h3>
+            <form action="index.php?page=admin" method="post" enctype="application/x-www-form-urlencoded">
+                <div class="form-group">
+                    <label for="inputCode">Code</label>
+                    <input type="password" class="form-control" id="inputCode" name="inputCode"
+                    placeholder="Entrez le code">
+                </div>
+                <button name="btCode" type="submit" class="btn btn-lg btn-primary">Soumettre</button>
+            </form>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+

@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} Inscription {% endblock %}
+
+{% block body %}
+
+        {% if form is same as(null) %}
+                <h1>Pas d'accès à l'inscription sans géolocation</h1>
+        {% elseif form.valide is defined %}
+            {% if form.valide == true %}
+                <h1 class="h3 mb-3 font-weight-normal">Inscription réussie</h1>
+                <h1 class="h3 mb-3 font-weight-normal">Votre mail : {{form.email}}</h1>
+                <p>Un récapitulatif vous a été envoyé par mail.</p>
+                {% else %}
+                    <h1 class="alert alert-danger">{{ form.error }}</h1>
+                    <a href="index.php?page=inscription">Retour à la page d'inscription</a>
+            {% endif %}
+        {% elseif countryName != null %}
+        <h1>Votre pays : {{ countryName }}</h1>
+        <form id="sign-up-form" action="index.php?page=inscription"
+              method="post" enctype="application/x-www-form-urlencoded">
+            <div class="form-group">
+                <label for="inputLastName">Nom</label>
+                <input type="text" id="inputLastName" name="inputLastName" class="form-control"
+                       placeholder="Veuillez insérer votre nom" required>
+            </div>
+            <div class="form-group">
+                <label for="inputFirstName">Prénom</label>
+                <input type="text" id="inputFirstName" name="inputFirstName" class="form-control"
+                       placeholder="Veuillez insérer votre prénom" required>
+            </div>
+            <div class="form-group">
+                <label for="inputBirthDate">Date de naissance</label>
+                <input type="date" id="inputBirthDate" name="inputBirthDate" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="inputGender">Sexe</label>
+                <input type="radio" name="inputGender"  value="Masculin" required>Masculin
+                <input type="radio" name="inputGender"  value="Féminin">Féminin
+            </div>
+            <div class="form-group">
+                <label for="inputCountry">Pays</label>
+                <select name="countryList" for="sign-up-form" class="form-control" required>
+                    {% for options in tab %}
+                         {% for option in options %}
+                          <option value="{{ option.countryName }}"
+                                  {% if countryCode ==  option.countryCode %}selected{% endif %}>
+                              {{ option.countryName }}
+                          </option>
+                          {% endfor %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputJob">Métier</label>
+                <select name="jobList" for="sign-up-form" class="form-control" required>
+                    <option value="cadre">Cadre</option>
+                    <option value="employe">Employe</option>
+                    <option value="ouvrier">Ouvrier</option>
+                    <option value="agriculteur">Agriculteur</option>
+            </select>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Email</label>
+                <input type="email" id="inputEmail" name="inputEmail" class="form-control"
+                       placeholder="Veuillez insérer votre mail" required>
+            </div>
+
+            <button type="submit" class="btn btn-lg btn-primary" name="btInscrire">S'inscrire</button>
+        </form>
+            {% else %}
+            <h1>Impossible de trouver votre pays !</h1>
+{% endif %}
+{% endblock %}

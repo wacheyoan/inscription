@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Projet Inscription pour Lemon Interactive">
+    <meta name="author" content="Yoan Wache">
+    <title>{% block title %} Inscription - Lemon Interactive {% endblock %}</title>
+    <link href="../web/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="../web/css/style.css" type="text/css" rel="stylesheet">
+    {% block style %} {% endblock %}
+</head>
+    <body>
+        {% include 'menu.html.twig' %}
+        <div class="container">
+        {% block body %}
+
+        {% endblock %}
+        </div>
+        <script src="../web/js/jquery-3.4.1.min.js"></script>
+        <script src="../web/js/bootstrap.js"></script>
+    </body>
+</html>
+
+

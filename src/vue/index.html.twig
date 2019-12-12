@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }} Accueil {% endblock %}
+{% block body %}
+    <div class="jumbotron">
+        <h1>Bienvenue sur la page d'accueil</h1><br>
+        <ul>
+            <li>Utilisation de Twig</li>
+            <span>J'ai décidé d'utiliser le moteur de templates Twig pour ce test car je l'utilise
+                maintenant dans la plupart de mes projets.</span>
+            <li>Utilisation de Bootstrap</li>
+            <span>J'utilise le framework Bootstrap afin de m'aider à rendre le site le plus ergonomique
+            et responsive possible.</span>
+            <li>Utilisation de PhpStorm</li>
+            <li>PHP 7.3.12</li>
+            <li>MySQL 15.1</li>
+        </ul>
+        <h3>Tâches demandées lors du test :</h3><br>
+        <ul>
+            <li>Géolocalisation du visiteur :</li>
+            <span>Pour ce faire, j'ai utilisé l'API de Google : <strong>Geolocate API</strong>, cette dernière me
+            donne la longitude et la latitude du visiteur</span>
+            <p>Pour traduire ces données en informations, j'ai utilisé une autre API de Google :
+                <strong>Geocoding</strong>, elle me renvoit un json comportant énormément d'informations sur sa
+                localité, dont son pays par exemple</p>
+            <li>Formulaire dont pré-sélection</li>
+            <span>Pour le champs des pays, j'ai utilisé une autre API (restcountries) me retournant des informations
+            sur les pays du monde dont leur nom par exemple. Pour pré-sélectionner le pays de l'utilisateur
+            j'ai dû faire une comparaison entre le code du pays du visiteur et le code des pays de cette API.
+            Sur les codes des pays et non les noms car ils étaient différents entre les deux APIs. </span>
+            <p>J'ai aussi rajouté quelques contraintes de validations côté serveur en plus de celles en HTML
+            afin de ne pas avoir de champs vide par exemple. J'ai aussi protégé le formulaire de la faille XSS
+            et des injections</p>
+            <li>Mail récapitulatif</li>
+            <span>Pour l'envoi de mail, j'ai utilisé PHPMAILER utilisant un serveur gmail smtp</span>
+            <p>Afin d'éviter les duplications de code, j'ai créé un "service" pour le mail, EmailNotification.php.</p>
+            <li>Back-office</li>
+            <span>Pour le back-office, je pensais partir sur une interface de connexion mais vu que ce n'était pas
+                demandé explicitement je suis parti sur un accès par code à entrer dans un simple input</span>
+            <p>Dès lors, on pourra accéder à la liste des utilisateurs et à leurs informations, le tout
+                groupé par pays, il est possible aussi de les modifier, d'en ajouter et d'en supprimer.</p>
+        </ul>
+        <h3>Retour personnel :</h3><br>
+        <p>Cela faisait un moment que je n'avais pas fait de PHP 'PUR', travaillant plus avec Symfony que ce soit
+            en formation ou pour des projets personnels. C'est un bon exercice pour se remettre dans le "bain" même
+        si je sais qu'il me reste encore beaucoup de bonnes pratiques à voir. Je n'avais encore jamais utilisé
+        les APIs de google, cela m'a beaucoup apporté.</p>
+
+    </div>
+
+{% endblock %}
+
