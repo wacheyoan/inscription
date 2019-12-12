@@ -32,5 +32,7 @@
 	-	Ajout utilisateur
 	-	Modification utilisateurs
 	-	Suppression utilisateurs
+	
+  Code admin : ADMIN
   
   ## Plus d'infos sur la page d'accueil du projet...
